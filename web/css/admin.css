@@ -1,0 +1,52 @@
+/**
+ * Simple Dashboard Template
+ * 
+ * Simple dashboard template for freedom!
+ *
+ * @author Gemblue
+ * @link https://github.com/gemblue
+ */
+
+/* Sidebar */
+#sidebar {
+    background:#444;
+    padding:20px;
+    color:#FFF;
+    height:800px;
+}
+#sidebar ul {
+    padding:0px;
+    margin:0px;
+    margin-top:40px;
+}
+#sidebar ul li {
+    margin-bottom:10px;
+    list-style: none;
+}
+
+#sidebar ul li a{
+    color:#FFF;
+    font-size:15px;
+}
+
+/* Content */
+#content {
+    padding:20px;
+}
+
+/* Footer */
+footer {
+    background:#dedede;
+    padding:20px;
+    margin:0px;
+}
+
+/* Utilities */
+.row.no-pad {
+    margin-right:0;
+    margin-left:0;
+}
+.row.no-pad > [class*='col-'] {
+    padding-right:0;
+    padding-left:0;
+}
