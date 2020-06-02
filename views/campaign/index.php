@@ -19,21 +19,29 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-       
+
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'user_id',
+            [
+                'label' => 'Creator',
+                'value' => 'user.name',
+            ],
             'title',
             'content:ntext',
-            'target_amount',
-            'created_at',
-            'updated_at',
-
+            [
+                'label' => 'Target',
+                'value' => function ($searchModel) {
+                    return number_format($searchModel->target_amount);
+                },
+            ],
+            [
+                'label' => 'Created',
+                'value' => 'created_at',
+            ],
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
