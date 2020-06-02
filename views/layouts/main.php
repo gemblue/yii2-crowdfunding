@@ -38,7 +38,7 @@ AppAsset::register($this);
                 <li><a href="<?php echo Url::to('users');?>"><i class="lar la-user"></i>&nbsp;&nbsp;Users</a></li>
                 <li><a href="#"><i class="las la-user-tag"></i>&nbsp;&nbsp;Roles</a></li>
                 <li><a href="<?php echo Url::to('campaign');?>"><i class="lab la-gratipay"></i>&nbsp;&nbsp;Campaign</a></li>
-                <li><a href="#"><i class="las la-tag"></i>&nbsp;&nbsp;Label</a></li>
+                <li><a href="<?php echo Url::to('labels');?>"><i class="las la-tag"></i>&nbsp;&nbsp;Labels</a></li>
             </ul>
         </div>
     </div>
