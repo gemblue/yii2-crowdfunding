@@ -12,6 +12,14 @@ use app\models\Labels;
 class LabelsSearch extends Labels
 {
     /**
+     * @inheritdoc
+     */
+    public static function tableName()
+    {
+        return 'labels';
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function rules()
