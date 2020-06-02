@@ -26,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
+            
             [
                 'label' => 'Creator',
                 'value' => 'user.name',
@@ -34,6 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'title',
             [
                 'label' => 'Content',
+                'attribute' => 'content',
                 'value' => function ($searchModel) {
                     return StringHelper::truncate($searchModel->content, 100, ' ...');
                 },
