@@ -34,11 +34,11 @@ AppAsset::register($this);
             <h3>CrowdFunding</h3>
 
             <ul>
-                <li><a href="<?php echo Url::home();?>"><i class="las la-home"></i>&nbsp;&nbsp;Dashboard</a></li>
-                <li><a href="<?php echo Url::to('users');?>"><i class="lar la-user"></i>&nbsp;&nbsp;Users</a></li>
+                <li><a href="<?php echo Url::base();?>"><i class="las la-home"></i>&nbsp;&nbsp;Dashboard</a></li>
+                <li><a href="<?php echo Url::base();?>/users"><i class="lar la-user"></i>&nbsp;&nbsp;Users</a></li>
                 <li><a href="#"><i class="las la-user-tag"></i>&nbsp;&nbsp;Roles</a></li>
-                <li><a href="<?php echo Url::to('campaign');?>"><i class="lab la-gratipay"></i>&nbsp;&nbsp;Campaign</a></li>
-                <li><a href="<?php echo Url::to('labels');?>"><i class="las la-tag"></i>&nbsp;&nbsp;Labels</a></li>
+                <li><a href="<?php echo Url::base();?>/campaign"><i class="lab la-gratipay"></i>&nbsp;&nbsp;Campaign</a></li>
+                <li><a href="<?php echo Url::base();?>/labels"><i class="las la-tag"></i>&nbsp;&nbsp;Labels</a></li>
             </ul>
         </div>
     </div>

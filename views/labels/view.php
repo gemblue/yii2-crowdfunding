@@ -13,7 +13,16 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="labels-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <?= DetailView::widget([
+        'model' => $model,
+        'attributes' => [
+            'label_name',
+            [
+                'label' => 'Created',
+                'value' => $model->created_at
+            ],
+        ],
+    ]) ?>
 
     <p>
         <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
@@ -25,15 +34,5 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]) ?>
     </p>
-
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'label_name',
-            'created_at',
-            'updated_at',
-        ],
-    ]) ?>
 
 </div>
