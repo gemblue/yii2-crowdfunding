@@ -108,8 +108,15 @@ class CampaignController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($request = Yii::$app->request->post()) 
+        {
+            $model->title = $request['Campaign']['title'];
+            $model->content = $request['Campaign']['content'];
+            $model->target_amount = $request['Campaign']['target_amount'];
+            
+            if ($model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
         }
 
         return $this->render('update', [
