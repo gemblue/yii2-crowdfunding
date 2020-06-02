@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\StringHelper;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
@@ -31,7 +32,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => 'user.name',
             ],
             'title',
-            'content:ntext',
+            [
+                'label' => 'Content',
+                'value' => function ($searchModel) {
+                    return StringHelper::truncate($searchModel->content, 100, ' ...');
+                },
+            ],
             [
                 'label' => 'Target',
                 'value' => function ($searchModel) {
