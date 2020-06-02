@@ -33,6 +33,10 @@
 #content {
     padding:20px;
 }
+.summary{
+    margin-top:20px;
+    margin-bottom:20px;
+}
 
 /* Footer */
 footer {
