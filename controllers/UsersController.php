@@ -65,8 +65,16 @@ class UsersController extends Controller
     public function actionCreate()
     {
         $model = new Users();
+        
+        if ($request = Yii::$app->request->post())
+        {
+            $model->name = $request['Users']['name'];
+            $model->email = $request['Users']['email'];
+            $model->status = $request['Users']['status'];
+            $model->password = $request['Users']['password'];
+            
+            $model->save();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -86,7 +94,15 @@ class UsersController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($request = Yii::$app->request->post())
+        {
+            $model->name = $request['Users']['name'];
+            $model->email = $request['Users']['email'];
+            $model->status = $request['Users']['status'];
+            $model->password = $request['Users']['password'];
+            
+            $model->save();
+            
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
