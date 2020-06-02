@@ -31,13 +31,14 @@ class LabelsController extends Controller
 
     /**
      * Lists all Labels models.
+     * 
      * @return mixed
      */
     public function actionIndex()
     {
         $searchModel = new LabelsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+        
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -66,8 +67,13 @@ class LabelsController extends Controller
     {
         $model = new Labels();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($request = Yii::$app->request->post())
+        {
+            $model->label_name = $request['Labels']['label_name'];
+
+            if ($model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
         }
 
         return $this->render('create', [
@@ -86,8 +92,13 @@ class LabelsController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($request = Yii::$app->request->post())
+        {
+            $model->label_name = $request['Labels']['label_name'];
+            
+            if ($model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
         }
 
         return $this->render('update', [
