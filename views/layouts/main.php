@@ -5,6 +5,7 @@
 
 use app\widgets\Alert;
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
@@ -33,10 +34,10 @@ AppAsset::register($this);
             <h3>CrowdFunding</h3>
 
             <ul>
-                <li><a href="#"><i class="las la-home"></i>&nbsp;&nbsp;Dashboard</a></li>
-                <li><a href="#"><i class="lar la-user"></i>&nbsp;&nbsp;Users</a></li>
+                <li><a href="<?php echo Url::base();?>"><i class="las la-home"></i>&nbsp;&nbsp;Dashboard</a></li>
+                <li><a href="<?php echo Url::base();?>/users"><i class="lar la-user"></i>&nbsp;&nbsp;Users</a></li>
                 <li><a href="#"><i class="las la-user-tag"></i>&nbsp;&nbsp;Roles</a></li>
-                <li><a href="#"><i class="lab la-gratipay"></i>&nbsp;&nbsp;Campaign</a></li>
+                <li><a href="<?php echo Url::base();?>/campaign"><i class="lab la-gratipay"></i>&nbsp;&nbsp;Campaign</a></li>
                 <li><a href="#"><i class="las la-tag"></i>&nbsp;&nbsp;Label</a></li>
             </ul>
         </div>
