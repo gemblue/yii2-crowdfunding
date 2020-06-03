@@ -17,6 +17,16 @@ use yii\db\Expression;
 class Campaign extends ActiveRecord
 {
     /**
+     * Modify field labels
+     */
+    public function attributeLabels()
+    {
+        return [
+            'target_amount' => 'Target'
+        ];
+    }
+
+    /**
      * Like before/after model method.
      * 
      * In Yii, it's called behaviours.
