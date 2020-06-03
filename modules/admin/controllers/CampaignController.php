@@ -13,6 +13,8 @@ namespace app\modules\admin\controllers;
 use Yii;
 use app\models\Campaign;
 use app\models\CampaignSearch;
+use app\models\Labels;
+use app\models\CampaignLabels;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -77,22 +79,32 @@ class CampaignController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Campaign();
+        $campaign = new Campaign();
+        $campaignLabels = new CampaignLabels();
         
         if ($request = Yii::$app->request->post()) 
         {
-            $model->user_id = 1;
-            $model->title = $request['Campaign']['title'];
-            $model->content = $request['Campaign']['content'];
-            $model->target_amount = $request['Campaign']['target_amount'];
+            /** 1. Insert master campaign */
+            $campaign->user_id = 1;
+            $campaign->title = $request['Campaign']['title'];
+            $campaign->content = $request['Campaign']['content'];
+            $campaign->target_amount = $request['Campaign']['target_amount'];
             
-            if ($model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+            if ($campaign->save()) {
+
+                /** 2. Connect to label */
+                try {
+                    $campaignLabels->saveConnect($campaign->id, $request['labels']);
+                } catch (Exception $e) {
+                    echo $e->getMessage();
+                }
+
+                return $this->redirect(['view', 'id' => $campaign->id]);
             }
         }
 
         return $this->render('create', [
-            'model' => $model,
+            'model' => $campaign,
         ]);
     }
 
@@ -110,11 +122,22 @@ class CampaignController extends Controller
 
         if ($request = Yii::$app->request->post()) 
         {
+            
+            
+            Labels::saveToCampaign($request['labels']);
+            exit;
+
+            /** Insert main data */
             $model->title = $request['Campaign']['title'];
             $model->content = $request['Campaign']['content'];
             $model->target_amount = $request['Campaign']['target_amount'];
             
             if ($model->save()) {
+
+                /** Then insert labels. */
+                Labels::saveToCampaign($request['labels']);
+                exit;
+
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         }
