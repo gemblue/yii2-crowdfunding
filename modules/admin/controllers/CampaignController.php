@@ -99,7 +99,7 @@ class CampaignController extends Controller
                     echo $e->getMessage();
                 }
 
-                return $this->redirect(['view', 'id' => $campaign->id]);
+                return $this->redirect(['index']);
             }
         }
 
@@ -118,32 +118,31 @@ class CampaignController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
-
+        $campaign = Campaign::find()->with('labels')->where(['id' => $id])->one();
+        $campaignLabels = new CampaignLabels();
+        
         if ($request = Yii::$app->request->post()) 
         {
+            /** 1. Insert main data */
+            $campaign->title = $request['Campaign']['title'];
+            $campaign->content = $request['Campaign']['content'];
+            $campaign->target_amount = $request['Campaign']['target_amount'];
             
-            
-            Labels::saveToCampaign($request['labels']);
-            exit;
+            if ($campaign->save()) {
 
-            /** Insert main data */
-            $model->title = $request['Campaign']['title'];
-            $model->content = $request['Campaign']['content'];
-            $model->target_amount = $request['Campaign']['target_amount'];
-            
-            if ($model->save()) {
+                /** 2. Connect to label */
+                try {
+                    $campaignLabels->saveConnect($id, $request['labels']);
+                } catch (Exception $e) {
+                    echo $e->getMessage();
+                }
 
-                /** Then insert labels. */
-                Labels::saveToCampaign($request['labels']);
-                exit;
-
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['index']);
             }
         }
 
         return $this->render('update', [
-            'model' => $model,
+            'model' => $campaign
         ]);
     }
 
