@@ -41,38 +41,42 @@ class CampaignLabels extends ActiveRecord
      */
     public function saveConnect($campaignId, $labels) {
 
-        $labelsModel = new Labels;
+        /** Local */
         $labelsId = null;
-        
-        /** Separate with comma. */
-        $results = explode(', ', $labels);
+        $labelsModel = new Labels;
 
+        /** Decode. */
+        $results = json_decode($labels, TRUE);
+        
         /** Create label master */
         foreach ($results as $result) {
-            
-            $row = $labelsModel::find()->where(['label_name' => $result])->one();
+
+            $row = $labelsModel::find()->where(['label_name' => $result['value']])->one();
 
             if (!$row) {
 
-                $labelsModel->label_name = $result;
+                $labelsModel = new Labels;
+                $labelsModel->label_name = $result['value'];
                 $labelsModel->save();
-
+                
                 $labelsId = $labelsModel->id;
             } else {
                 $labelsId = $row->id;
             }
 
             /** Connect label with campaign */
-            $relations = $this->find()->where(['labels_id' => $labelsId, 'campaign_id' => $campaignId])->one();
+            $relations = CampaignLabels::find()->where(['labels_id' => $labelsId, 'campaign_id' => $campaignId])->exists();
             
             if (!$relations) {
-
-                $this->labels_id = $labelsId;
-                $this->campaign_id = $campaignId;
                 
-                $this->save();
+                $seed = new CampaignLabels;
+
+                $seed->labels_id = $labelsId;
+                $seed->campaign_id = $campaignId;
+                
+                $seed->save();
             
             }
-        }    
+        }   
     }
 }
