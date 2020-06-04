@@ -25,6 +25,16 @@ class CampaignLabels extends ActiveRecord
     }
 
     /**
+     * Get label
+     * 
+     * Get detail label from pivot point of view.
+     */
+    public function getLabel()
+    {
+        return $this->hasOne(Labels::className(), ['id' => 'labels_id']);
+    }
+
+    /**
      * Save and connect
      * 
      * @return void
