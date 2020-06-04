@@ -8,6 +8,8 @@ use yii\widgets\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
+<link href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css" />
+
 <div class="campaign-form">
 
     <?php $form = ActiveForm::begin(); ?>
@@ -20,7 +22,19 @@ use yii\widgets\ActiveForm;
     
     <div class="form-group field-campaign-target_amount">
         <label class="control-label" for="campaign-target_amount">Labels</label>
-        <?= HTML::textInput('labels', null, ['class' => 'form-control']) ?>
+        
+        <?php
+        $default = null;
+        $total = count($model['labels']);
+
+        for ($i=0; $i<$total; $i++) {
+            $default .= $model['labels'][$i]->label->label_name . ', ';
+        }
+
+        $default = rtrim($default, ', ');
+        ?>
+
+        <?= HTML::textInput('labels', $default, ['class' => 'form-control']) ?>
         <div class="help-block">Write multiple label with comma separated. Ex : Earth, Sea, Humanity</div>
     </div>
 
@@ -31,3 +45,12 @@ use yii\widgets\ActiveForm;
     <?php ActiveForm::end(); ?>
 
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>
+
+<script>
+var input = document.querySelector('input[name=labels]');
+
+var tagify = new Tagify(input);
+</script>
