@@ -46,6 +46,17 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
             ],
             [
+                'label' => 'Labels',
+                'format' => 'raw',
+                'value' => function ($searchModel) {
+                    $results = null;
+                    foreach ($searchModel->labels as $label) {
+                        $results .= "<span class=\"label label-info\">{$label->label->label_name}</span>&nbsp;";
+                    }
+                    return $results;
+                },
+            ],
+            [
                 'label' => 'Created',
                 'value' => 'created_at',
             ],
