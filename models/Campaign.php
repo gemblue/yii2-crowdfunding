@@ -44,12 +44,22 @@ class Campaign extends ActiveRecord
     }
 
     /**
-     * Join with users ..
+     * Join with user ..
      * 
      * @return Object
      */
     public function getUser()
     {
         return $this->hasOne(Users::className(), ['id' => 'user_id']);
+    }
+
+    /**
+     * Join with labels ..
+     * 
+     * @return Object
+     */
+    public function getLabels()
+    {
+        return $this->hasMany(CampaignLabels::className(), ['campaign_id' => 'id']);
     }
 }
