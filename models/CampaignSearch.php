@@ -62,7 +62,7 @@ class CampaignSearch extends Campaign
      */
     public function search($params)
     {
-        $query = Campaign::find()->joinWith('user');
+        $query = Campaign::find()->with(['user', 'labels']);
         
         // Conditions that should always apply here
         $dataProvider = new ActiveDataProvider([
