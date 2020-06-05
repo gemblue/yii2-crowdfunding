@@ -88,6 +88,7 @@ class CampaignController extends Controller
             $campaign->user_id = 1;
             $campaign->title = $request['Campaign']['title'];
             $campaign->content = $request['Campaign']['content'];
+            $campaign->image = $request['Campaign']['image'];
             $campaign->target_amount = $request['Campaign']['target_amount'];
             
             if ($campaign->save()) {
@@ -126,6 +127,7 @@ class CampaignController extends Controller
             /** 1. Insert main data */
             $campaign->title = $request['Campaign']['title'];
             $campaign->content = $request['Campaign']['content'];
+            $campaign->image = $request['Campaign']['image'];
             $campaign->target_amount = $request['Campaign']['target_amount'];
             
             if ($campaign->save()) {

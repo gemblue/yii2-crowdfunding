@@ -40,6 +40,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
             ],
             [
+                'label' => 'Image',
+                'attribute' => 'image',
+                'format' => 'raw',
+                'value' => function ($searchModel) {
+                    return "<img src=\"https://picsum.photos/id/10/100/100\" />";
+                },
+            ],
+            [
                 'label' => 'Target',
                 'value' => function ($searchModel) {
                     return number_format($searchModel->target_amount);
