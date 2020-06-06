@@ -4,30 +4,40 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\UsersSearch */
+/* @var $searchModel app\models\PaymentSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Users';
+$this->title = 'Payments';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="users-index">
+<div class="payment-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-    
-    <p>
-        <?= Html::a('Create Users', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            
-            'name',
-            'email:email',
+
+            [
+                'label' => 'Donatur',
+                'attribute' => 'user_id',
+                'value' => 'user.name',
+            ],
+            [
+                'label' => 'Campaign',
+                'attribute' => 'campaign_id',
+                'value' => 'campaign.title',
+            ],
+            [
+                'label' => 'Total',
+                'attribute' => 'amount',
+                'value' => function ($searchModel) {
+                    return number_format($searchModel->amount);
+                },
+            ],
+            'source',
             [
                 'label' => 'Status',
                 'attribute' => 'status',
@@ -37,9 +47,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
             ],
             [
-                'label' => 'Registered',
+                'label' => 'Issued at',
+                'attribute' => 'created_at',
                 'value' => 'created_at'
             ],
+            
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
