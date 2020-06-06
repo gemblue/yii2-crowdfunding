@@ -22,11 +22,17 @@
 #sidebar ul li {
     margin-bottom:10px;
     list-style: none;
+    font-size:17px;
 }
 
 #sidebar ul li a{
     color:#FFF;
-    font-size:15px;
+    font-size:17px;
+}
+
+#sidebar a{
+    color:#FFF;
+    font-size:17px;
 }
 
 /* Content */
