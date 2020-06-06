@@ -57,7 +57,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => function ($searchModel) {
                     $results = null;
                     foreach ($searchModel->labels as $label) {
-                        $results .= "<span class=\"label label-info\">{$label->label->label_name}</span>&nbsp;";
+                        $results .= "<span class=\"label label-default\">{$label->label->label_name}</span>&nbsp;";
                     }
                     return $results;
                 },
