@@ -43,7 +43,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'status',
                 'format' => 'raw',
                 'value' => function ($searchModel) {
-                    return "<span class=\"label label-success\">{$searchModel->status}</span>";
+                    
+                    if ($searchModel->status == 'pending') 
+                        $color = 'danger';
+                    else
+                        $color = 'success';
+                    
+                    return "<span class=\"label label-{$color}\">{$searchModel->status}</span>";
                 },
             ],
             [

@@ -1,17 +1,18 @@
 <?php
+use yii\helpers\Html;
 use yii\helpers\StringHelper;
 ?>
 
 <!-- Heading Row -->
 <div class="row align-items-center my-5">
     <div class="col-lg-7">
-        <img class="img-fluid rounded mb-4 mb-lg-0" src="https://picsum.photos/id/3/900/360" alt="">
+        <img class="img-fluid rounded mb-4 mb-lg-0" src="https://imgix.kitabisa.com/07ac25dc-cd95-4163-8156-092c583179d7.jpg?ar=16:9&w=664" alt="">
     </div>
     <!-- /.col-lg-8 -->
     <div class="col-lg-5">
         <h1 class="font-weight-light">Patungan Bangun Sumur Wakaf di Gaza</h1>
         <p>Inna lillahi wa inna ilaihi raji'un. Badan Kesehatan Dunia (WHO) mencatat sekitar 97% air yang mengalir di permukiman warga Gaza sudah tercemar zat-zat berbahaya dan tak layak konsumsi.</p>
-        <a class="btn btn-danger" href="#"><i class="lar la-hand-point-up"></i>&nbsp;&nbsp;Donasi Sekarang</a>
+        <?php echo HTML::a('<i class="lar la-hand-point-up"></i>&nbsp;&nbsp;Donasi Sekarang', 'payment/request?campaign=1', ['class' => 'btn btn-danger']);?>
     </div>
     <!-- /.col-md-4 -->
 </div>
