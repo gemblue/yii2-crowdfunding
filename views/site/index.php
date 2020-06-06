@@ -1,53 +1,45 @@
 <?php
-
-/* @var $this yii\web\View */
-
-$this->title = 'My Yii Application';
+use yii\helpers\StringHelper;
 ?>
-<div class="site-index">
 
-    <div class="jumbotron">
-        <h1>Congratulations!</h1>
-
-        <p class="lead">You have successfully created your Yii-powered application.</p>
-
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
+<!-- Heading Row -->
+<div class="row align-items-center my-5">
+    <div class="col-lg-7">
+        <img class="img-fluid rounded mb-4 mb-lg-0" src="https://picsum.photos/id/3/900/360" alt="">
     </div>
+    <!-- /.col-lg-8 -->
+    <div class="col-lg-5">
+        <h1 class="font-weight-light">Patungan Bangun Sumur Wakaf di Gaza</h1>
+        <p>Inna lillahi wa inna ilaihi raji'un. Badan Kesehatan Dunia (WHO) mencatat sekitar 97% air yang mengalir di permukiman warga Gaza sudah tercemar zat-zat berbahaya dan tak layak konsumsi.</p>
+        <a class="btn btn-danger" href="#"><i class="lar la-hand-point-up"></i>&nbsp;&nbsp;Donasi Sekarang</a>
+    </div>
+    <!-- /.col-md-4 -->
+</div>
+<!-- /.row -->
 
-    <div class="body-content">
-
-        <div class="row">
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
-            </div>
-        </div>
-
+<!-- Call to Action Well -->
+<div class="card text-white bg-secondary my-5 py-4 text-center">
+    <div class="card-body">
+        <p class="text-white m-0">Lawan Corona: Sembako Untuk Pekerja Harian</p>
     </div>
 </div>
+
+<!-- Content Row -->
+<div class="row">
+    <?php foreach($campaigns as $campaign) :?>
+        <div class="col-md-4 mb-5">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h2 class="card-title"><?php echo $campaign->title;?></h2>
+                    <img src="<?php echo $campaign->image?>" class="img-fluid mb-3" alt="">
+                    <p class="card-text"><?php echo StringHelper::truncate($campaign->content, 100, ' ...');?></p>
+                </div>
+                <div class="card-footer">
+                    <a href="#" class="btn btn-info btn-sm">Detail</a>
+                    <a href="#" class="btn btn-danger btn-sm">Donasi</a>
+                </div>
+            </div>
+        </div>
+    <?php endforeach;?>
+</div>
+<!-- /.row -->
