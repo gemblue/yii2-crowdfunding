@@ -1,7 +1,3 @@
-<a href="https://github.com/yiisoft" target="_blank">
-    <img src="https://avatars0.githubusercontent.com/u/993323" height="100px">
-</a>
-
 # Yii2 Crowdfunding
 
 Opensource Crowdfunding Platform, Written in Yii 2
@@ -11,9 +7,15 @@ Opensource Crowdfunding Platform, Written in Yii 2
 |Todo|Status|
 |---|---|
 |Users management|-|
-|Campaign management|-|
-|Payment management|-|
-|Users management|-|
-|Campaign Showcase|-|
+|Role management|-|
+|Campaign management|✔️|
+|Labels management|✔️|
+|Payment management|✔️|
+|Campaign Showcase|✔️|
 |User funding|-|
 |Campaign status|-|
+|ACL/RBAC|-|
+
+## Screenshot
+
+![](https://nimbus-screenshots.s3.amazonaws.com/s/74a4db1e91a6d93d2f14ce6e5685114f.png)
