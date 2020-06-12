@@ -5,6 +5,7 @@
 /* @var $model app\models\LoginForm */
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\bootstrap\ActiveForm;
 
 $this->title = 'Login';
@@ -37,10 +38,9 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
             
             <?php ActiveForm::end(); ?>
-
+            
             <div style="color:#999;">
-                You may login with <strong>admin/admin</strong> or <strong>demo/demo</strong>.<br>
-                To modify the username/password, please check out the code <code>app\models\User::$users</code>.
+                Belum punya akun? silahkan <a href="<?php echo Url::base();?>/user/register">daftar disini</a>.
             </div>
         </div>
     </div>
