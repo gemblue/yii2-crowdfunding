@@ -5,11 +5,35 @@ namespace app\controllers;
 use Yii;
 use yii\web\Controller;
 use yii\web\Response;
+use yii\filters\AccessControl;
 use app\models\Payment;
 use app\models\Campaign;
 
 class PaymentController extends Controller
 {
+    /**
+     * Define behaviour
+     */
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ]
+                ],
+                'denyCallback' => function () {
+                    Yii::$app->session->setFlash('message', '<div class="alert alert-danger">Untuk melakukan donasi harap login terlebih dahulu.</div>');
+                    
+                    return Yii::$app->response->redirect(['user/login']);
+                },
+            ],
+        ];
+    }
+
     /**
      * Payment request.
      *
