@@ -12,7 +12,7 @@ class m200612_145027_init_rbac extends Migration
         // Depends
         $auth = Yii::$app->authManager;
         $auth->removeAll();
-
+        
         // Campaign permission
         $indexCampaign = $auth->createPermission('indexCampaign');
         $indexCampaign->description = 'See a campaign index';
