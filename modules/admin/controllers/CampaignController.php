@@ -18,6 +18,7 @@ use app\models\CampaignLabels;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * CampaignController implements the CRUD actions for Campaign model.
@@ -37,6 +38,39 @@ class CampaignController extends Controller
                 'actions' => [
                     'delete' => ['POST'],
                 ],
+            ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['index'],
+                        'roles' => ['indexCampaign'],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['view'],
+                        'roles' => ['viewCampaign'],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['create'],
+                        'roles' => ['createCampaign'],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['update'],
+                        'roles' => ['updateCampaign'],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['delete'],
+                        'roles' => ['deleteCampaign'],
+                    ],
+                ],
+                'denyCallback' => function () {
+                    throw new \yii\web\HttpException(401, 'You have no privilege to access this page.');
+                }
             ],
         ];
     }
