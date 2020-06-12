@@ -69,6 +69,7 @@ class UsersController extends Controller
         if ($request = Yii::$app->request->post())
         {
             $model->name = $request['Users']['name'];
+            $model->username = $request['Users']['username'];
             $model->email = $request['Users']['email'];
             $model->status = $request['Users']['status'];
             $model->password = $request['Users']['password'];

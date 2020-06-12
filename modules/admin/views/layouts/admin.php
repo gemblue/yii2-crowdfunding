@@ -41,6 +41,10 @@ AppAsset::register($this);
                 <li><a href="#"><i class="las la-user-tag"></i>&nbsp;&nbsp;Roles</a></li>
                 <li><a href="<?php echo Url::base();?>/admin/payment"><i class="las la-comment-dollar"></i>&nbsp;&nbsp;Payment</a></li>
                 <li><a href="<?php echo Url::base();?>/admin/labels"><i class="las la-tag"></i>&nbsp;&nbsp;Labels</a></li>
+
+                <?php if (!Yii::$app->user->isGuest) : ?>
+                    <li><a href="<?php echo Url::base();?>/user/logout"><i class="las la-times"></i>&nbsp;&nbsp;Logout</a></li>
+                <?php endif;?>
             </ul>
         </div>
     </div>
