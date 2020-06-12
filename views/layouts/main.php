@@ -58,7 +58,7 @@ use yii\helpers\Url;
                         </li>
                     <?php else : ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?php echo Url::base();?>/user/logout"># Hai <?= \Yii::$app->user->identity->username ?>, Logout</a>
+                            <a class="nav-link" href="<?php echo Url::base();?>/user/logout"># Hai <?= \Yii::$app->user->identity->name ?>, Logout</a>
                         </li>
                     <?php endif;?>
                     
