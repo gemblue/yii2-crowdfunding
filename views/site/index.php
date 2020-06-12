@@ -6,7 +6,7 @@ use yii\helpers\StringHelper;
 <!-- Heading Row -->
 <div class="row align-items-center my-5">
     <div class="col-lg-7">
-        <img class="img-fluid rounded mb-4 mb-lg-0" src="https://imgix.kitabisa.com/07ac25dc-cd95-4163-8156-092c583179d7.jpg?ar=16:9&w=664" alt="">
+        <img class="img-fluid rounded mb-4 mb-lg-0" src="https://imgix.kitabisa.com/f4201bda-0ea6-4693-8ed2-2129c179f883.jpg?ar=16:9&w=664" alt="">
     </div>
     <!-- /.col-lg-8 -->
     <div class="col-lg-5">
@@ -36,8 +36,8 @@ use yii\helpers\StringHelper;
                     <p class="card-text"><?php echo StringHelper::truncate($campaign->content, 100, ' ...');?></p>
                 </div>
                 <div class="card-footer">
-                    <a href="#" class="btn btn-info btn-sm">Detail</a>
-                    <a href="#" class="btn btn-danger btn-sm">Donasi</a>
+                    <a href="#" class="btn btn-info btn-sm"><i class="las la-search"></i>&nbsp;&nbsp;Detail</a>
+                    <a href="#" class="btn btn-danger btn-sm"><i class="lar la-hand-point-up"></i>&nbsp;&nbsp;Donasi</a>
                 </div>
             </div>
         </div>

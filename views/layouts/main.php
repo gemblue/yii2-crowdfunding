@@ -1,5 +1,6 @@
 <?php
 use yii\helpers\Html;
+use yii\helpers\Url;
 ?>
 <?php $this->beginPage() ?>
 
@@ -36,20 +37,31 @@ use yii\helpers\Html;
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home
-                    <span class="sr-only">(current)</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Tentang</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Donasi</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Kontak</a>
-                </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home
+                        <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Tentang</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Donasi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Kontak</a>
+                    </li>
+
+                    <?php if (Yii::$app->user->isGuest) : ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?php echo Url::base();?>/user/login">Login</a>
+                        </li>
+                    <?php else : ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?php echo Url::base();?>/user/logout"># Hai <?= \Yii::$app->user->identity->username ?>, Logout</a>
+                        </li>
+                    <?php endif;?>
+                    
                 </ul>
             </div>
         </div>
