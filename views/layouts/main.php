@@ -46,12 +46,12 @@ use yii\helpers\Url;
                         <a class="nav-link" href="<?php echo Url::base();?>/site/about">Tentang</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php echo Url::base();?>/site/donate">Donasi</a>
+                        <a class="nav-link" href="<?php echo Url::base();?>/site/donate">Cara Donasi</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="<?php echo Url::base();?>/site/contact">Kontak</a>
                     </li>
-
+                    
                     <?php if (Yii::$app->user->isGuest) : ?>
                         <li class="nav-item">
                             <a class="nav-link" href="<?php echo Url::base();?>/user/login">Login</a>
