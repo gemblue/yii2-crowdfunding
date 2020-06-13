@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="col-md-6 offset-md-3">
 
         <div class="mt-5 mb-5">
-            <h1><?= Html::encode($this->title) ?></h1>
+            <h1>Kontak</h1>
 
             <?php if (Yii::$app->session->hasFlash('contactFormSubmitted')): ?>
 
