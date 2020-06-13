@@ -61,6 +61,16 @@ class SiteController extends Controller
     }
 
     /**
+     * Displays donation tutorial page.
+     *
+     * @return Response|string
+     */
+    public function actionDonate()
+    {
+        return $this->render('donate');
+    }
+
+    /**
      * Displays about page.
      *
      * @return string
