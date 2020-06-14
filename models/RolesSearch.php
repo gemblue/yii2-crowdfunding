@@ -49,7 +49,8 @@ class RolesSearch extends Roles
      */
     public function search($params)
     {
-        $query = Roles::find();
+        // Just take role, not permission.
+        $query = Roles::find()->where(['type' => 1]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
