@@ -19,7 +19,7 @@ class RolesController extends Controller
     {
         $searchModel = new RolesSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+        
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -34,8 +34,16 @@ class RolesController extends Controller
      */
     public function actionView($id)
     {
+        // Take permission by role.
+        $permissions = (new \yii\db\Query())->select(['child', 'name', 'description'])
+                                            ->from('auth_item_child')
+                                            ->join('JOIN', 'auth_item', 'auth_item.name = auth_item_child.child')
+                                            ->where(['parent' => $id])
+                                            ->all();
+
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => Roles::findOne($id),
+            'permissions' => $permissions
         ]);
     }
 
@@ -71,18 +79,16 @@ class RolesController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
+        $model = Roles::findOne($id);
 
         if ($request = Yii::$app->request->post())
         {
-            $model->name = $request['Users']['name'];
-            $model->email = $request['Users']['email'];
-            $model->status = $request['Users']['status'];
-            $model->password = $request['Users']['password'];
+            $model->name = $request['Roles']['name'];
+            $model->description = $request['Roles']['description'];
             
             $model->save();
             
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['index']);
         }
 
         return $this->render('update', [
@@ -102,21 +108,5 @@ class RolesController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
-    }
-
-    /**
-     * Finds the role based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return Users the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    protected function findModel($id)
-    {
-        if (($model = Users::findOne($id)) !== null) {
-            return $model;
-        }
-
-        throw new NotFoundHttpException('The requested page does not exist.');
     }
 }
