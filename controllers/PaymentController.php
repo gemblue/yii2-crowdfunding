@@ -8,6 +8,7 @@ use yii\web\Response;
 use yii\filters\AccessControl;
 use app\models\Payment;
 use app\models\Campaign;
+use app\models\Bank;
 
 class PaymentController extends Controller
 {
@@ -43,7 +44,8 @@ class PaymentController extends Controller
     {   
         $request = Yii::$app->request->get();
         $campaign = Campaign::findOne($request['campaign']);
-        
+        $banks = Bank::find()->all();
+
         if ($post = Yii::$app->request->post()) {
 
             $payment = new Payment;
@@ -54,13 +56,14 @@ class PaymentController extends Controller
             $payment->source = $post['source'];
             
             if ($payment->save()) {
-                Yii::$app->session->setFlash('message', '<div class="alert alert-success">Terimakasih atas donasi kamu. Semoga berkah!</div>');
-                $this->redirect('finish');
+                Yii::$app->session->setFlash('message', '<div class="alert alert-warning">Terimakasih atas bantuannya, silahkan transfer dengan detail berikut ini</div>');
+                $this->redirect(['finish', 'id' => $payment->id]);
             }
         }
 
         return $this->render('request', [
-            'campaign' => $campaign
+            'campaign' => $campaign,
+            'banks' => $banks
         ]);
     }
     
@@ -69,8 +72,12 @@ class PaymentController extends Controller
      *
      * @return Response
      */
-    public function actionFinish()
+    public function actionFinish($id)
     {   
-        return $this->render('finish');
+        $model = Payment::findOne($id);
+
+        return $this->render('finish', [
+            'model' => $model
+        ]);
     }
 }
