@@ -47,4 +47,14 @@ class Payment extends ActiveRecord
     {
         return $this->hasOne(Campaign::className(), ['id' => 'campaign_id']);
     }
+
+    /**
+     * Join with bank ..
+     * 
+     * @return Object
+     */
+    public function getBank()
+    {
+        return $this->hasOne(Bank::className(), ['id' => 'source']);
+    }
 }
