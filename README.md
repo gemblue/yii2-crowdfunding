@@ -7,14 +7,15 @@ Opensource Crowdfunding Platform, Written in Yii 2
 |Todo|Status|
 |---|---|
 |Users management|-|
-|Role management|-|
+|Role management|✔️|
+|Permission management|✔️|
 |Campaign management|✔️|
 |Labels management|✔️|
 |Payment management|✔️|
 |Campaign Showcase|✔️|
 |User funding|-|
 |Campaign status|-|
-|ACL/RBAC|-|
+|ACL/RBAC|✔️|
 
 ## Screenshot
 
