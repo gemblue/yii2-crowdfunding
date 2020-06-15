@@ -15,7 +15,7 @@ use yii\widgets\ActiveForm;
             <img src="<?php echo $campaign->image?>" class="img-fluid mb-3 mt-3" style="width:100%;" alt="">
             
             <?php $form = ActiveForm::begin(); ?>
-        
+
             <div class="form-group">
                 <label for="">Berapa jumlah yang ingin kamu donasikan?</label>
                 <input type="text" id="amount" name="amount" class="form-control" />
@@ -23,10 +23,12 @@ use yii\widgets\ActiveForm;
             
             <div class="form-group">
                 <label for="">Pilih metode pembayaran</label>
-                <?php echo HTML::dropDownList('source', null, [
-                    'Bank Mandiri' => 'Bank Mandiri',
-                    'Bank BCA' => 'Bank BCA'
-                ], ['class' => 'form-control'])?>
+                <select name="source" class="form-control">
+                    <option value="">Piih jalur pembayaran ..</option>
+                    <?php foreach ($banks as $bank) :?>
+                        <option value="<?php echo $bank['id']?>"><?php echo $bank['bank_name']?></option>
+                    <?php endforeach;?>
+                </select>
             </div>
 
             <div class="form-group text-right">
