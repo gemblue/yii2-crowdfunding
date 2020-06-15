@@ -12,6 +12,21 @@ use yii\data\ActiveDataProvider;
 class PermissionController extends Controller
 {
     /**
+     * Lists all Permission.
+     * @return mixed
+     */
+    public function actionIndex()
+    {
+        $searchModel = new RolesSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams, 2);
+        
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    /**
      * Creates a new permission.
      * If creation is successful, the browser will be redirected to the 'index' page.
      * @return mixed
@@ -30,11 +45,7 @@ class PermissionController extends Controller
             $permission = $auth->createPermission($request['permission']);
             $permission->description = $request['description'];
             $auth->add($permission);
-
-            // Connect permission to role.
-            $role = Roles::findOne($request['role']);
-            $auth->addChild($role, $permission);
-
+            
             return $this->redirect(['roles/index']);
         }
 
