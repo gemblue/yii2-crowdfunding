@@ -37,9 +37,10 @@ AppAsset::register($this);
             <ul>
                 <li><a href="<?php echo Url::base();?>/admin/dashboard"><i class="las la-home"></i>&nbsp;&nbsp;Dashboard</a></li>
                 <li><a href="<?php echo Url::base();?>/admin/campaign"><i class="lab la-gratipay"></i>&nbsp;&nbsp;Campaign</a></li>
-                <li><a href="<?php echo Url::base();?>/admin/users"><i class="lar la-user"></i>&nbsp;&nbsp;Users</a></li>
-                <li><a href="<?php echo Url::base();?>/admin/roles"><i class="las la-user-tag"></i>&nbsp;&nbsp;Roles</a></li>
                 <li><a href="<?php echo Url::base();?>/admin/payment"><i class="las la-comment-dollar"></i>&nbsp;&nbsp;Payment</a></li>
+                <li><a href="<?php echo Url::base();?>/admin/users"><i class="lar la-user"></i>&nbsp;&nbsp;Users</a></li>
+                <li><a href="<?php echo Url::base();?>/admin/roles"><i class="las la-star"></i>&nbsp;&nbsp;Roles</a></li>
+                <li><a href="<?php echo Url::base();?>/admin/permission"><i class="las la-key"></i>&nbsp;&nbsp;Permission</a></li>
                 <li><a href="<?php echo Url::base();?>/admin/labels"><i class="las la-tag"></i>&nbsp;&nbsp;Labels</a></li>
                 
                 <?php if (!Yii::$app->user->isGuest) : ?>
