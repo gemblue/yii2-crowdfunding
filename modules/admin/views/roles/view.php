@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Users */
@@ -22,26 +23,30 @@ $this->params['breadcrumbs'][] = $this->title;
         <tr><th>Registered</th><td><?php echo Yii::$app->formatter->format($model->created_at, 'date');?></td></tr>
     </table>
 
-    <div class="mt-4"><b>Permission : </b></div>
+    <div class="mt-4 mb-4"><b>Permissions : </b></div>
 
-    <table class="table table-bordered mt-2">
-        <tr><th>Name</th><th>Description</th></tr>
+    <?php $form = ActiveForm::begin(); ?>
+        
+        <div class="row">
+            <div class="col-md-6">
+                <?php $i=1; foreach($allPermissions as $allPermission) :?>
+                    <div class="form-check">
+                        <input type="checkbox" name="roles[<?php echo $allPermission['name']?>]" class="form-check-input" value="<?php echo $allPermission['name']?>" <?php echo (in_array($allPermission['name'], $permissions)) ? 'checked' : '';?>>
+                        <label class="form-check-label" for="exampleCheck1"><?php echo $allPermission['name'];?></label>
+                        <small id="emailHelp" class="form-text text-muted"><?php echo $allPermission['description']?></small>
+                    </div>
 
-        <?php foreach($permissions as $permission) :?>
-            <tr><td><?php echo $permission['name'];?></td><td><?php echo $permission['description']?></td></tr>
-        <?php endforeach;?>
+                    <?php if (($i % 6) == 0) :?>
+                        </div><div class="col-md-6">
+                    <?php endif;?>
+                    
+                <?php $i++; endforeach;?>
+            </div>
+        </div>
+        
+        <div class="form-group mt-4">
+            <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        </div>
 
-        <tr><td>Test</td><td>Test</td></tr>
-    </table>
-
-    <div class="mt-4">
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
-    </div>
+    <?php ActiveForm::end(); ?>
 </div>
