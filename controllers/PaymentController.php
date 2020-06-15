@@ -47,9 +47,9 @@ class PaymentController extends Controller
         $banks = Bank::find()->all();
 
         if ($post = Yii::$app->request->post()) {
-
+            
             $payment = new Payment;
-            $payment->user_id = 1;
+            $payment->user_id = Yii::$app->user->identity->id;
             $payment->campaign_id = $request['campaign'];
             $payment->status = 'pending';
             $payment->amount = $post['amount'];
