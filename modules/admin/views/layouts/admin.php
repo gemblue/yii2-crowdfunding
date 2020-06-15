@@ -38,6 +38,7 @@ AppAsset::register($this);
                 <li><a href="<?php echo Url::base();?>/admin/dashboard"><i class="las la-home"></i>&nbsp;&nbsp;Dashboard</a></li>
                 <li><a href="<?php echo Url::base();?>/admin/campaign"><i class="lab la-gratipay"></i>&nbsp;&nbsp;Campaign</a></li>
                 <li><a href="<?php echo Url::base();?>/admin/payment"><i class="las la-comment-dollar"></i>&nbsp;&nbsp;Payment</a></li>
+                <li><a href="<?php echo Url::base();?>/admin/bank"><i class="las la-dollar-sign"></i>&nbsp;&nbsp;Bank</a></li>
                 <li><a href="<?php echo Url::base();?>/admin/users"><i class="lar la-user"></i>&nbsp;&nbsp;Users</a></li>
                 <li><a href="<?php echo Url::base();?>/admin/roles"><i class="las la-star"></i>&nbsp;&nbsp;Roles</a></li>
                 <li><a href="<?php echo Url::base();?>/admin/permission"><i class="las la-key"></i>&nbsp;&nbsp;Permission</a></li>
