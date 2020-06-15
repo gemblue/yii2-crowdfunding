@@ -8,6 +8,7 @@ use app\models\RolesSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\data\ActiveDataProvider;
+use yii\db\Query;
 
 class RolesController extends Controller
 {
@@ -18,7 +19,7 @@ class RolesController extends Controller
     public function actionIndex()
     {
         $searchModel = new RolesSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams, 1);
         
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -34,16 +35,45 @@ class RolesController extends Controller
      */
     public function actionView($id)
     {
+        $permissions = [];
+
+        // Submitted
+        if ($request = Yii::$app->request->post())
+        {
+            // Revoke permission by role
+            (new Query)->createCommand()->delete('auth_item_child', ['parent' => $id])->execute();
+            
+            // Connect permission to role.
+            foreach ($request['roles'] as $key => $value) {
+                
+                $role = Roles::findOne($id);
+                $permission = Roles::findOne($value);
+                
+                $auth = Yii::$app->authManager;
+                $auth->addChild($role, $permission);
+            }
+        }
+
         // Take permission by role.
-        $permissions = (new \yii\db\Query())->select(['child', 'name', 'description'])
-                                            ->from('auth_item_child')
-                                            ->join('JOIN', 'auth_item', 'auth_item.name = auth_item_child.child')
-                                            ->where(['parent' => $id])
-                                            ->all();
+        $results = (new Query)->select(['name'])
+                                        ->from('auth_item_child')
+                                        ->join('JOIN', 'auth_item', 'auth_item.name = auth_item_child.child')
+                                        ->where(['parent' => $id])
+                                        ->all();
+        
+        $allPermissions = (new Query)->select(['name', 'description'])
+                                              ->from('auth_item')
+                                              ->where(['type' => 2])
+                                              ->all();
+
+        foreach ($results as $result) {
+            $permissions[] = $result['name'];
+        }
 
         return $this->render('view', [
             'model' => Roles::findOne($id),
-            'permissions' => $permissions
+            'permissions' => $permissions,
+            'allPermissions' => $allPermissions
         ]);
     }
 
